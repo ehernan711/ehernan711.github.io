@@ -1,0 +1,214 @@
+<html> 
+<head>
+
+<title>The Game Of Doom</title>
+<style>
+
+
+body{
+  background-color: #cbebd0;
+}
+
+* {
+	border: 4px solid blue;
+}
+
+div {
+
+}
+
+#one{
+	height: 400px;
+	width: 10px;
+	background-color: #45Acf8;
+	margin-left: 200px;
+}
+
+#two{
+	height: 375px;
+	width: 10px;
+	background-color: #45Acf8;
+	margin-left: 300px;
+	margin-top: 250px;
+}
+
+#goal{
+	height: 75px;
+	width: 75px;
+	background-color: #2ef765;
+	margin-left: 900px;
+	margin-top: -170px;
+}
+
+	#redball{
+	position: absolute;
+	}
+
+</style>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css" media="all" />
+
+</head>
+
+<body onkeydown="arrowkeycheck();">
+
+<img id="redball" src="redball.jpeg" height="50px"/>
+
+<div id="one"><div id="two"></div></div>
+<div id="goal"></div>
+
+<script>
+	
+	function log(msg){
+
+  document.getElementById('log').innerHTML = msg + "<br>" + document.getElementById('log').innerHTML;
+
+}
+
+function start_bouncing(){
+	redball.left = 10;
+	redball.top = 10;
+	redball.dx = -25;
+	redball.dy = 25;
+	animate();
+}
+
+function stop_bouncing(){
+  redball.left = 10;
+  redball.top = 10;
+	redball.dx = 0;
+	redball.dy = 0;
+}
+
+function update_ball(){
+var bottom=redball.top+50;
+//log(bottom);
+if (bottom>screen.height){
+dy=dy*-1;
+	}
+	
+if (redball.top<1){
+dy=dy*-1;
+	}
+	
+if(redball.top>590){
+dy=dy*-1;
+}	
+	//if right side of ball touching left side of wall
+	
+var right=redball.left+50;
+//log(right);
+if (right>screen.width-25){
+dx=dx*-1;
+}
+if (redball.left<1){
+dx=dx*-1;
+}
+
+if (right>one.left && redball.top<one.bottom && redball.left<one.right){
+dx=dx*-1;
+}
+
+if (right>two.left && bottom>two.top && redball.left<two.right){
+//console.debug("hitbar2:"+two.top+"bottom:"+bottom);
+dx=dx*-1;
+}
+
+
+
+if (right>goal.left &&  redball.left<goal.right && bottom>goal.top && redball.top<goal.bottom){
+console.debug("hitgoal:"+goal.left+"right:"+right);
+dx=dx*-1;
+}
+
+//if (right>two.left && redball.left<one.left){
+//dx=dx*-1;
+//}
+
+
+
+redball.left=redball.left+dx;
+//log(redball.left);
+redball.style.left=redball.left+"px";
+
+
+
+redball.top=redball.top+dy;
+redball.style.top=redball.top+"px";
+
+}	
+	function animate() {    
+
+    requestAnimFrame( animate );
+    
+    update_ball();
+	
+
+   
+
+}
+
+// requestAnim shim layer by Paul Irish
+
+    window.requestAnimFrame = (function(){
+
+      return  window.requestAnimationFrame       || 
+
+              window.webkitRequestAnimationFrame || 
+
+              window.mozRequestAnimationFrame    || 
+
+              window.oRequestAnimationFrame      || 
+
+              window.msRequestAnimationFrame     || 
+
+              function(/* function */ callback, /* DOMElement */ element){
+
+                window.setTimeout(callback, 1000 / 60);
+
+              };
+
+    })();
+
+//start game
+var dx=7;
+var dy=7;
+redball.left=10;
+redball.top=10;
+one.left=230;
+one.right=235;
+one.bottom=400;
+two.left=520;
+two.top=300;
+two.right=530;
+goal.left=900;
+goal.right=975;
+goal.top=175;
+goal.bottom=100;
+animate ();
+
+
+//document.write("Total Height" + screen.height);
+//document.write("Total Width" + screen.width);
+
+	
+</script>
+<script>
+confirm("Let's get ready to Bounce!");
+
+
+var feedback=prompt("Rate this game out of 10");
+if (feedback>7)
+{
+	confirm("WOOHOO! Thanks. Stay tuned for more!");
+}
+else
+{
+	confirm("I worked so hard at this game and you gave me that score?! The nerve! Just you wait!");
+}
+
+</script>
+
+
+<button onclick="stop_bouncing();">restart</button>
+</body>
+</html>
