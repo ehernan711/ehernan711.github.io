@@ -155,6 +155,19 @@ a:focus {
     -o-background-size: cover;
 }
 
+.intro .intro-body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.intro .intro-body .brand-heading {
+    font-size: 40px;
+}
+
+.intro .intro-body .intro-text {
+    font-size: 18px;
+}
+
 .intro02 {
     display: table;
     width: 100%;
@@ -170,16 +183,16 @@ a:focus {
     -o-background-size: cover;
 }
 
-.intro .intro-body {
+.intro02 .intro-body {
     display: table-cell;
     vertical-align: middle;
 }
 
-.intro .intro-body .brand-heading {
+.intro02 .intro-body .brand-heading {
     font-size: 40px;
 }
 
-.intro .intro-body .intro-text {
+.intro02 .intro-body .intro-text {
     font-size: 18px;
 }
 
