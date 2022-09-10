@@ -209,6 +209,18 @@ a:focus {
     .intro .intro-body .intro-text {
         font-size: 26px;
     }
+    .intro02 {
+        height: 100%;
+        padding: 0;
+    }
+
+    .intro02 .intro-body .brand-heading {
+        font-size: 100px;
+    }
+
+    .intro02 .intro-body .intro-text {
+        font-size: 26px;
+    }
 }
 
 .btn-circle {
